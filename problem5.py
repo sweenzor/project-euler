@@ -4,20 +4,26 @@
 
 import time
 
+check = 1
+count = 1
 
-for divisor in range(30):
+for divisor in range(3,100):
 	mark = time.time()
 
-	#divisor = 10
-
-	count = 1
 	while True:
 		divisor_count = 0
-		for div in range(1,divisor+1):
+		dividors = range(1,divisor+1)
+		dividors.reverse()
+		for div in dividors:
+			if count % check != 0:
+				break
 			if count % div == 0:
 				divisor_count = divisor_count + 1
+			else:
+				break
 		if divisor_count == divisor:
 			break
-		count = count + 1
+		count = count + check # wooo! increment by the previous solution
 
+	check = count
 	print divisor,'\t','%5f' % (time.time()-mark),'\t',count
