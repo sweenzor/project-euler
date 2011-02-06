@@ -12,16 +12,13 @@ mark = time.time()
 
 potential = []
 for a in range(1,1001)[::-1]:
-	for b in range(a,1001-a):
-		for c in range(b,1001-a-b):
-			if a+b+c == 1000:
-				potential.append([a,b,c])
-
-# print potential
-print len(potential)
+    for b in range(a,1001-a):
+        for c in range(b,1001-a-b):
+            if a+b+c == 1000:
+                potential.append([a,b,c])
 
 for a,b,c in potential:
-	if a**2 + b**2 == c**2:
-		print a,b,c
-		print a*b*c
+    if a**2 + b**2 == c**2:
+        print a,b,c
+        print a*b*c
 print time.time()-mark
