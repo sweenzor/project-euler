@@ -38,6 +38,7 @@ subsets = []
 
 for y,line in enumerate(grid):
     for x,node in enumerate(line):
-        try: print grid[y][x] except: pass
-
-
+        try: print grid[y][x-4:x]
+        except: pass
+        try: print grid[y][x:x+4]
+        except: pass
