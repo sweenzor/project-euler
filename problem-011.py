@@ -6,7 +6,6 @@
 
 
 import time
-mark = time.time()
 
 
 grid = [
@@ -32,5 +31,13 @@ grid = [
 [01,70,54,71,83,51,54,69,16,92,33,48,61,43,52,01,89,19,67,48]
 ]
 
+
+mark = time.time()
+
+subsets = []
+
+for y,line in enumerate(grid):
+    for x,node in enumerate(line):
+        try: print grid[y][x] except: pass
 
 
