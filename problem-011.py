@@ -40,13 +40,8 @@ for y,line in enumerate(grid):
     for x,node in enumerate(line):
         dir1 = grid[y][x-4:x]
         dir5 = grid[y][x:x+4]
-        #[yy[4] for yy in a]
         dir3 = [xx[x] for xx in grid[y-3:y+1]]
         dir7 = [xx[x] for xx in grid[y:y+4]]
-        #dir3 = grid[y-1][x]
-        print dir7
-        #print dir7
-        #if len(dir1) == 4:
-        #    print dir1
-        #if len(dir2) == 4:
-        #    print dir2
+        for dir in [dir1,dir5,dir3,dir7]:
+            if len(dir) == 4:
+                print dir
