@@ -39,9 +39,26 @@ subsets = []
 for y,line in enumerate(grid):
     for x,node in enumerate(line):
         dir1 = grid[y][x-4:x]
-        dir5 = grid[y][x:x+4]
+        try:
+            dir2 = [grid[y-i][x-i] for i in [0,1,2,3]]
+        except:
+            pass
         dir3 = [xx[x] for xx in grid[y-3:y+1]]
+        try:
+            dir4 = [grid[y-i][x+i] for i in [0,1,2,3]]
+        except:
+            pass
+        dir5 = grid[y][x:x+4]
+        try:
+            dir6 = [grid[y+i][x+i] for i in [0,1,2,3]]
+        except:
+            pass
         dir7 = [xx[x] for xx in grid[y:y+4]]
-        for dir in [dir1,dir5,dir3,dir7]:
-            if len(dir) == 4:
-                print dir
+        try:
+            dir8 = [grid[y+i][x-i] for i in [0,1,2,3]]
+        except:
+            pass
+
+        soln = []
+        for dir in [dir1,dir2,dir3,dir4,dir5,dir6,dir7,dir8]:
+            print dir
