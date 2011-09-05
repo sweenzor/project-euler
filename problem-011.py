@@ -35,6 +35,7 @@ grid = [
 mark = time.time()
 
 subsets = []
+soln = []
 
 for y,line in enumerate(grid):
     for x,node in enumerate(line):
@@ -59,6 +60,10 @@ for y,line in enumerate(grid):
         except:
             pass
 
-        soln = []
         for dir in [dir1,dir2,dir3,dir4,dir5,dir6,dir7,dir8]:
-            print dir
+            total = 1
+            for number in dir:
+                total = total * number
+            soln.append(total)
+
+print max(soln)
