@@ -8,23 +8,26 @@ import time
 
 def triangle_number(num):
 	triangle = 0
-	for i in range(num):
+	for i in xrange(num):
 		triangle += i
 	return triangle
 
 def number_divisors(num):
 	number = num
 	count = 0
-	for i in range(1,num+1):
+	for i in xrange(1,num+1):
 		if number % i == 0:
 			count += 1
 			num = number / i
 	return count
 
 mark = time.time()
-for i in range(1,1000):
+for i in xrange(1,25000):
 	tri = triangle_number(i)
 	count = number_divisors(tri)
+	if count > 200:
+		print i, tri, count
 	if count > 500:
+		print i, tri, count
 		break
 print 'time: ', time.time()-mark
