@@ -12,3 +12,14 @@
 
 # NOTE: Once the chain starts the terms are allowed to go above one million.
 
+def step_seq(num):
+	if num % 2 == 0:
+		return num/2
+	else:
+		return (3*num)+1
+
+num = 13
+print num
+while num != 1:
+	num = step_seq(num)
+	print num
