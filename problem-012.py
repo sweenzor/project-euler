@@ -15,19 +15,16 @@ def triangle_number(num):
 def number_divisors(num):
 	number = num
 	count = 0
-	divisors = []
 	for i in range(1,num+1):
 		if number % i == 0:
 			count += 1
-			divisors.append(i)
 			num = number / i
-	return count, divisors
+	return count
 
 mark = time.time()
-for i in range(0,226):
+for i in range(1,1000):
 	tri = triangle_number(i)
-	count, div = number_divisors(tri)
-	if count > 88:
-		print i, tri, count
+	count = number_divisors(tri)
+	if count > 500:
 		break
 print 'time: ', time.time()-mark
