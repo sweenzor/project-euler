@@ -11,6 +11,13 @@ def triangle_number(num):
 		triangle += i
 	return triangle
 
-	
+def number_divisors(num):
+	count = 0
+	for i in range(1,num):
+		if num % i == 0:
+			count += 1
+	return count
+
+
 for i in range(10):
-	print triangle_number(i) 
+	print triangle_number(i), number_divisors(triangle_number(i))
