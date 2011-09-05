@@ -5,4 +5,12 @@
 # What is the value of the first triangle number to have over five hundred divisors?
 
 
+def triangle_number(num):
+	triangle = 0
+	for i in range(num):
+		triangle += i
+	return triangle
 
+	
+for i in range(10):
+	print triangle_number(i) 
