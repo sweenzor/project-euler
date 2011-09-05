@@ -4,6 +4,7 @@
 
 # What is the value of the first triangle number to have over five hundred divisors?
 
+import time
 
 def triangle_number(num):
 	triangle = 0
@@ -13,11 +14,15 @@ def triangle_number(num):
 
 def number_divisors(num):
 	count = 0
-	for i in range(1,num):
+	for i in range(1,(num/2)+1):
 		if num % i == 0:
 			count += 1
 	return count
 
-
-for i in range(10):
-	print triangle_number(i), number_divisors(triangle_number(i))
+mark = time.time()
+for i in range(0,1000):
+	tri = triangle_number(i)
+	div = number_divisors(tri)
+	if div > 500:
+		break
+print time.time()-mark
