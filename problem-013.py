@@ -103,4 +103,7 @@ numbers = [
 53503534226472524250874054075591789781264330331690,
 ]
 
-print numbers
+sum = 0
+for num in numbers:
+	sum += num
+print str(sum)[:10]
