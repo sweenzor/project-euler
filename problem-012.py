@@ -6,13 +6,16 @@
 
 import time
 
-def triangle_number(num):
-	triangle = 0
-	for i in xrange(num):
-		triangle += i
+def triangle_numbers(num):
+	triangle = [0]*(num+1)
+	triangle[1] = 1
+	for i, val in enumerate(triangle):
+		if i ==0:
+			continue
+		triangle[i] = triangle[i-1] + i
 	return triangle
 
-def number_divisors(num):
+def number_of_divisors(num):
 	number = num
 	count = 0
 	for i in xrange(1,num+1):
@@ -21,13 +24,24 @@ def number_divisors(num):
 			num = number / i
 	return count
 
+def divisors(num):
+	number = num
+	divs = []
+	for i in xrange(1,num+1):
+		if number % i == 0:
+			divs.append(i)
+			num = number / i
+	return divs
+
 mark = time.time()
-for i in xrange(1,25000):
-	tri = triangle_number(i)
-	count = number_divisors(tri)
-	if count > 200:
-		print i, tri, count
+tri = triangle_numbers(25000)
+for i, val in enumerate(tri):
+	if val % 437580 != 0:
+		continue
+	count = number_of_divisors(val)
+	if count > 100:
+		print i, val, count, divisors(val)
 	if count > 500:
-		print i, tri, count
+		print '\n', val, '\n'
 		break
 print 'time: ', time.time()-mark
