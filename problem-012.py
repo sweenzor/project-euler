@@ -27,5 +27,7 @@ mark = time.time()
 for i in range(0,226):
 	tri = triangle_number(i)
 	count, div = number_divisors(tri)
-	print i, tri, count, div
+	if count > 88:
+		print i, tri, count
+		break
 print 'time: ', time.time()-mark
