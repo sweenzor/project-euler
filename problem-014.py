@@ -18,8 +18,15 @@ def step_seq(num):
 	else:
 		return (3*num)+1
 
-num = 13
-print num
-while num != 1:
-	num = step_seq(num)
-	print num
+def steps_in_seq(num):
+	count = 1
+	seq = [num]
+	while num != 1:
+		num = step_seq(num)
+		count += 1
+		seq.append(num)
+	return count, seq
+
+for num in xrange(5, 100):
+	count, seq = steps_in_seq(num)
+	print num, count, seq
