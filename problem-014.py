@@ -12,21 +12,32 @@
 
 # NOTE: Once the chain starts the terms are allowed to go above one million.
 
+import time
+
 def step_seq(num):
 	if num % 2 == 0:
 		return num/2
 	else:
 		return (3*num)+1
 
-def steps_in_seq(num):
+def steps_in_seq(num, solns):
 	count = 1
+	orig = num
 	seq = [num]
 	while num != 1:
 		num = step_seq(num)
-		count += 1
-		seq.append(num)
+		if num in soln:
+			count += solns[num]
+			break
+		else:
+			count += 1
+			seq.append(num)
+	solns[orig] = count
 	return count, seq
 
-for num in xrange(5, 100):
-	count, seq = steps_in_seq(num)
+mark = time.time()
+soln = {}
+for num in xrange(1, 1000):
+	count, seq = steps_in_seq(num, soln)
 	print num, count, seq
+print time.time()-mark
