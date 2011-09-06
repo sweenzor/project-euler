@@ -38,11 +38,11 @@ def steps_in_seq(num, solns):
 mark = time.time()
 soln = {}
 max_count = [1,1]
-for num in xrange(1, 5000):
+for num in xrange(1, 1000000):
 	count, seq = steps_in_seq(num, soln)
 	#print num, count, seq
 	if max_count[1] < count:
 		max_count[0] = num
 		max_count[1] = count
 print time.time()-mark
-print count
+print max_count[0]
