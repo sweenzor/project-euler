@@ -37,11 +37,22 @@ def builder(num):
     if num in engl:
         return engl[num]
     
+    working = num
+    phrase = []
     for place in range(1,len(str(num))+1):
-        print str(num)[-place:]
+        sub = str(working)[-place:]
+        print sub
         try:
-            print engl[int(str(num)[-place:])]
+            phrase.append(engl[int(sub)])
+            working = working - int(sub)
+
         except:
             pass
+
+    phrase.reverse()
+    print phrase
         
 builder(904)
+builder(89)
+builder(3)
+builder(678)
