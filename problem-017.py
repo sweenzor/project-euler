@@ -29,9 +29,9 @@ for n in range(1,10):
 def count_total(num):
     count = 0
     for n in range(1,num+1):
-        print engl[n]
-        count += len(engl[n])
-    print count
+        print builder(n)
+        count += count_letters(builder(n))
+    return count
 
 
 def count_letters(phrase):
@@ -42,14 +42,10 @@ def count_letters(phrase):
 
 
 def builder(num):
+    # check for a match against the roots
     if num in engl:
         return engl[num]
 
-
-    for n in range(1,10):
-        engl[n*100] = engl[n]+' hundred and'
-
-    
     working = num
     phrase = []
     for place in range(1,len(str(num))+1):
@@ -57,22 +53,19 @@ def builder(num):
         try:
             phrase.append(engl[int(sub)])
             working = working - int(sub)
-
         except:
             pass
+
+    # hack for 'and'
+    if len(phrase) > 1:
+        if num > 100:
+            phrase.append('and')
 
     phrase.reverse()
     return phrase
 
 
-
-
-print builder(904)
-print builder(89)
-print builder(3)
-print builder(678)
-
-
-
+print count_total(5)
+print count_letters(builder(115))
 print count_letters(builder(342))
-
+print count_total(1000)
