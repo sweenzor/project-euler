@@ -29,7 +29,6 @@ for n in range(1,10):
 def count_total(num):
     count = 0
     for n in range(1,num+1):
-        print builder(n)
         count += count_letters(builder(n))
     return count
 
@@ -42,30 +41,37 @@ def count_letters(phrase):
 
 
 def builder(num):
-    # check for a match against the roots
-    if num in engl:
-        return engl[num]
+    """step 'through' the number, place by place,
+    looking for matches.
+
+    '12345' would get the following checked:
+    12345, 2345, 345, 45, 5
+
+    if there are any matches, that value gets subtracted out"""
 
     working = num
     phrase = []
-    for place in range(1,len(str(num))+1):
-        sub = str(working)[-place:]
-        try:
-            phrase.append(engl[int(sub)])
-            working = working - int(sub)
-        except:
-            pass
+
+    while working > 0:
+        for place in range(len(str(num))+1):
+            sub = str(working)[place:]
+            try:
+                phrase.append(engl[int(sub)])
+                working = working - int(sub)
+                break
+            except:
+                pass
 
     # hack for 'and'
     if len(phrase) > 1:
         if num > 100:
-            phrase.append('and')
+            phrase.insert(2,'and')
 
     phrase.reverse()
     return phrase
 
 
-print count_total(5)
-print count_letters(builder(115))
-print count_letters(builder(342))
-print count_total(1000)
+print 'total letters in 1-5: ', count_total(5)
+print 'letters in 115: ', count_letters(builder(115))
+print 'letters in 342: ', count_letters(builder(342))
+print 'total letters in 1-1000: ', count_total(1000)
