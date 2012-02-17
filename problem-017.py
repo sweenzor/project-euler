@@ -26,22 +26,34 @@ for n in range(1,10):
     engl[n*100] = engl[n]+' hundred'
 
 
-def letters(num):
+def count_total(num):
     count = 0
     for n in range(1,num+1):
         print engl[n]
         count += len(engl[n])
     print count
 
+
+def count_letters(phrase):
+    count = 0
+    for word in phrase:
+        count += len(word.replace(' ', ''))
+    return count
+
+
 def builder(num):
     if num in engl:
         return engl[num]
+
+
+    for n in range(1,10):
+        engl[n*100] = engl[n]+' hundred and'
+
     
     working = num
     phrase = []
     for place in range(1,len(str(num))+1):
         sub = str(working)[-place:]
-        print sub
         try:
             phrase.append(engl[int(sub)])
             working = working - int(sub)
@@ -50,9 +62,17 @@ def builder(num):
             pass
 
     phrase.reverse()
-    print phrase
-        
-builder(904)
-builder(89)
-builder(3)
-builder(678)
+    return phrase
+
+
+
+
+print builder(904)
+print builder(89)
+print builder(3)
+print builder(678)
+
+
+
+print count_letters(builder(342))
+
