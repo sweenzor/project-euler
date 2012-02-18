@@ -64,4 +64,27 @@ def random_paths(triangle):
             best = total
             print best
 
-random_paths(control)
+def all_paths(triangle):
+
+    paths = [[(0,triangle[0][0])]]
+
+    for index, row in enumerate(triangle[1:]):
+
+        new_paths = []
+        for path in paths:
+
+            index = path[-1][0]
+            new_paths.append(path + [(index, row[index])])
+            new_paths.append(path + [(index+1,row[index+1])])
+        
+        paths = new_paths
+
+    return paths
+
+
+
+
+
+
+for path in all_paths(control):
+    print path
