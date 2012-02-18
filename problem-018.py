@@ -17,6 +17,14 @@
 # challenge with a t containing one-hundred rows; it cannot be
 # solved by brute force, and requires a clever method! ;o)
 
+control = []
+
+control.append([3])
+control.append([7,4])
+control.append([2,4,6])
+control.append([8,5,9,3])
+
+
 t = []
 
 t.append([75])
@@ -42,17 +50,18 @@ triangle = t
 
 from random import randint
 
-best = 0
+def random_paths(triangle):
+    best = 0
+    while True:
 
-while True:
+        total = 0
+        index = -1
+        for row in triangle:
+            index = randint(0,index+1)
+            total += row[index]
 
-    total = 0
-    index = -1
-    for row in triangle:
-        index = randint(0,index+1)
-        total += row[index]
+        if total > best:
+            best = total
+            print best
 
-    if total > best:
-        best = total
-        print best
-
+random_paths(control)
