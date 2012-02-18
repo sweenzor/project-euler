@@ -37,3 +37,22 @@ t.append([04,62,98,27,23,9,70,98,73,93,38,53,60,04,23])
 
 triangle = t
 
+
+# brute force
+
+from random import randint
+
+best = 0
+
+while True:
+
+    total = 0
+    index = -1
+    for row in triangle:
+        index = randint(0,index+1)
+        total += row[index]
+
+    if total > best:
+        best = total
+        print best
+
