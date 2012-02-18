@@ -79,12 +79,11 @@ def all_paths(triangle):
         
         paths = new_paths
 
-    return paths
+    clean_paths = []
+    for path in paths:
+        clean_paths.append([num[1] for num in path])
+
+    return clean_paths
 
 
-
-
-
-
-for path in all_paths(control):
-    print path
+print max([sum(path) for path in all_paths(triangle)])
