@@ -20,9 +20,11 @@
 # routes every second it would take over twenty billion years to
 # check them all. There is an efficient algorithm to solve it. ;o)
 
-
-
-
+triangle = []
+fid = open('problem-067.txt', 'r')
+for line in fid.readlines():
+    row = line[:-2].split(' ')
+    triangle.append(map(int, row))
 
 
 def all_paths(triangle):
@@ -47,4 +49,4 @@ def all_paths(triangle):
     return clean_paths
 
 
-print max([sum(path) for path in all_paths(triangle)])
+print max([sum(path) for path in all_paths(triangle[:20])])
