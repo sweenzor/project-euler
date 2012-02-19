@@ -51,6 +51,8 @@ triangle = t
 from random import randint
 
 def random_paths(triangle):
+    """try a random walk"""
+
     best = 0
     while True:
 
@@ -64,21 +66,31 @@ def random_paths(triangle):
             best = total
             print best
 
-def all_paths(triangle):
 
+def all_paths(triangle):
+    """generate all posible paths"""
+
+    # store each path segment like so:
+    # [(location, value)]
     paths = [[(0,triangle[0][0])]]
 
+    # starting on the second row of the triangle
+    # loop over every row
     for index, row in enumerate(triangle[1:]):
 
+        # check the paths
         new_paths = []
         for path in paths:
 
+            # add next segment to appropiate paths
+            # uses the location index which is included in each segment
             index = path[-1][0]
             new_paths.append(path + [(index, row[index])])
             new_paths.append(path + [(index+1,row[index+1])])
         
         paths = new_paths
 
+    # remove indexing (so it looks pretty!)
     clean_paths = []
     for path in paths:
         clean_paths.append([num[1] for num in path])

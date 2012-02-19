@@ -22,6 +22,7 @@
 
 import time
 
+# load triangle from file
 triangle = []
 fid = open('problem-067.txt', 'r')
 for line in fid.readlines():
@@ -30,6 +31,7 @@ for line in fid.readlines():
 
 
 def path_sum(path):
+    """find the sum of a path, stored in (loc, val) form"""
 
     total = 0
     for entry in path:
@@ -37,16 +39,42 @@ def path_sum(path):
     return total
 
 
+def elimate_losers(paths):
+    """At each row, remove the lowest sum paths
+    this greatly reduces the number of paths that
+    need to be tested"""
+
+    good_paths = paths
+
+    if len(paths) > 16384:
+        sums = [path_sum(path) for path in paths]
+        sums.sort()
+        drop = sums[int(len(sums)*(0.5))]
+
+        good_paths = []
+        for path in paths:
+            if path_sum(path) > drop:
+                good_paths.append(path)
+        
+    return good_paths
+
+
 def all_paths(triangle):
 
+    # store each path segment like so:
+    # [(location, value)]
     paths = [[(0,triangle[0][0])]]
 
+    # starting on the second row of the triangle
+    # loop over every row
     for index, row in enumerate(triangle[1:]):
 
         print 'row: ', index+2, '\t',
         new_paths = []
         for path in paths:
 
+            # add next segment to appropiate paths
+            # uses the location index which is included in each segment
             index = path[-1][0]
             new_paths.append(path + [(index, row[index])])
             new_paths.append(path + [(index+1,row[index+1])])
@@ -54,24 +82,15 @@ def all_paths(triangle):
         paths = new_paths
         print 'num paths: ', len(paths)
 
-        if len(paths) > 16384:
+        paths = elimate_losers(paths)
 
-            sums = [path_sum(path) for path in paths]
-            sums.sort()
-            drop = sums[int(len(sums)*(0.5))]
-
-            good_paths = []
-            for path in paths:
-                if path_sum(path) > drop:
-                    good_paths.append(path)
-            
-            paths = good_paths
-
+    # remove indexing (so it looks pretty!)
     clean_paths = []
     for path in paths:
         clean_paths.append([num[1] for num in path])
 
     return clean_paths
+
 
 mark = time.time()
 total = max([sum(path) for path in all_paths(triangle)])
