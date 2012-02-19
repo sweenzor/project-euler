@@ -46,6 +46,23 @@ def check_abundant(num):
     return div_sum > num
 
 
+def sum_of_abundants(num, abundant):
+
+    result = False
+    for a in abundant:
+        if (num - a) in abundant:
+            result = True
+            break
+        if a > (num/2)+1:
+            break
+
+    return result
+
+
+
+
+
+
 abundant = []
 for i in range(1,28124):
     if check_abundant(i):
@@ -57,13 +74,10 @@ mark = time.time()
 count = 0
 for num in range(1,200):
 
-    for a in abundant:
-        if (num - a) in abundant:
-            print num, a, num-a
-            count += 1
-            break
-        if a > (num/2)+1:
-            break
+    if sum_of_abundants(num, abundant):
+        count += 1
+    else:
+        print num
 
 print count
 print time.time()-mark
