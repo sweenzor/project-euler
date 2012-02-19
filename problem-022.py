@@ -12,6 +12,12 @@
 
 # What is the total of all the name scores in the file?
 
+import string
+
+# alphabet values
+alpha = {}
+for index, letter in enumerate(string.ascii_uppercase):
+    alpha[letter] = index+1
 
 # read list of names
 fid = open('problem-022.txt', 'r')
@@ -27,5 +33,15 @@ names = new_names
 # alphabetical order
 names.sort()
 
-for name in names:
-    print name
+def name_value(name):
+    total = 0
+    for letter in name:
+        total += alpha[letter]
+    return total
+
+total = 0
+for index, name in enumerate(names):
+    total += (index+1) * name_value(name)
+
+print 'total name score: ', total
+
