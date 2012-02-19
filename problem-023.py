@@ -20,7 +20,29 @@
 # Find the sum of all the positive integers which cannot be written
 # as the sum of two abundant numbers.
 
+import math
 
+def divisors(num):
 
-range(1, 28123)
+    divs = []
+    for i in range(1, int(math.sqrt(num))+1):
+        if num % i == 0:
+            if not i in divs:
+                divs.append(i)
+            if not num/i in divs and num/i != num:
+                divs.append(num/i)
+
+    return divs
+
+def check_abundant(num):
+
+    divs = divisors(num)
+    div_sum = 0
+    for div in divs:
+        div_sum += div
+
+    return div_sum > num
+
+for i in range(1,29000):
+    print i, check_abundant(i)
 
