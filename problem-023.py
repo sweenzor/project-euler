@@ -21,6 +21,7 @@
 # as the sum of two abundant numbers.
 
 import math
+import time
 
 def divisors(num):
 
@@ -34,6 +35,7 @@ def divisors(num):
 
     return divs
 
+
 def check_abundant(num):
 
     divs = divisors(num)
@@ -43,6 +45,30 @@ def check_abundant(num):
 
     return div_sum > num
 
-for i in range(1,29000):
-    print i, check_abundant(i)
+
+abundant = []
+for i in range(1,28124):
+    if check_abundant(i):
+        abundant.append(i)
+print len(abundant)
+
+
+mark = time.time()
+count = 0
+for num in range(1,200):
+
+    for a in abundant:
+        if (num - a) in abundant:
+            print num, a, num-a
+            count += 1
+            break
+        if a > (num/2)+1:
+            break
+
+print count
+print time.time()-mark
+
+
+
+
 
