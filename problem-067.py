@@ -20,11 +20,21 @@
 # routes every second it would take over twenty billion years to
 # check them all. There is an efficient algorithm to solve it. ;o)
 
+import time
+
 triangle = []
 fid = open('problem-067.txt', 'r')
 for line in fid.readlines():
     row = line[:-2].split(' ')
     triangle.append(map(int, row))
+
+
+def path_sum(path):
+
+    total = 0
+    for entry in path:
+        total += entry[1]
+    return total
 
 
 def all_paths(triangle):
@@ -33,6 +43,7 @@ def all_paths(triangle):
 
     for index, row in enumerate(triangle[1:]):
 
+        print 'row: ', index+2, '\t',
         new_paths = []
         for path in paths:
 
@@ -41,6 +52,20 @@ def all_paths(triangle):
             new_paths.append(path + [(index+1,row[index+1])])
         
         paths = new_paths
+        print 'num paths: ', len(paths)
+
+        if len(paths) > 16384:
+
+            sums = [path_sum(path) for path in paths]
+            sums.sort()
+            drop = sums[int(len(sums)*(0.5))]
+
+            good_paths = []
+            for path in paths:
+                if path_sum(path) > drop:
+                    good_paths.append(path)
+            
+            paths = good_paths
 
     clean_paths = []
     for path in paths:
@@ -48,5 +73,7 @@ def all_paths(triangle):
 
     return clean_paths
 
-
-print max([sum(path) for path in all_paths(triangle[:20])])
+mark = time.time()
+total = max([sum(path) for path in all_paths(triangle)])
+print '\nlargest sum: ', total
+print 'elapsed: ', time.time()-mark
