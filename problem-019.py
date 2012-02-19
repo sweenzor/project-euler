@@ -17,5 +17,15 @@
 
 import datetime
 
+sunday_count = 0
 d = datetime.date(1901,1,1)
-print d.weekday()
+
+while d != datetime.date(2000,12,31):
+    # check if current day is a sunday, and the 1st
+    if d.weekday() == 6 and d.day == 1:
+        sunday_count += 1
+    
+    # increment the day
+    d += datetime.timedelta(1)
+
+print 'number of Sundays: ', sunday_count
