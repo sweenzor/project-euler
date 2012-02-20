@@ -72,12 +72,12 @@ print len(abundant)
 
 mark = time.time()
 count = 0
-for num in range(1,200):
+for num in range(1,28124):
 
     if sum_of_abundants(num, abundant):
-        count += 1
+        pass
     else:
-        print num
+        count += num
 
 print count
 print time.time()-mark
