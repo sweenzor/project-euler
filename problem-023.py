@@ -60,13 +60,11 @@ def sum_of_abundants(num, abundant):
 
 
 
-
-
-
 abundant = []
 for i in range(1,28124):
     if check_abundant(i):
         abundant.append(i)
+abundant = set(abundant)
 print len(abundant)
 
 
@@ -81,8 +79,3 @@ for num in range(1,28124):
 
 print count
 print time.time()-mark
-
-
-
-
-
