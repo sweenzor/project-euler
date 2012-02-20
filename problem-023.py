@@ -24,6 +24,7 @@ import math
 import time
 
 def divisors(num):
+    """generate the divisors of a number"""
 
     divs = []
     for i in range(1, int(math.sqrt(num))+1):
@@ -37,6 +38,7 @@ def divisors(num):
 
 
 def check_abundant(num):
+    """check if this number is an abundant number"""
 
     divs = divisors(num)
     div_sum = 0
@@ -47,6 +49,9 @@ def check_abundant(num):
 
 
 def sum_of_abundants(num, abundant):
+    """check if this number is the sum
+    of two abundant numbers.
+    list of abundant numbers must be provided"""
 
     result = False
     for a in abundant:
@@ -59,23 +64,22 @@ def sum_of_abundants(num, abundant):
     return result
 
 
+if __name__ == '__main__':
 
-abundant = []
-for i in range(1,28124):
-    if check_abundant(i):
-        abundant.append(i)
-abundant = set(abundant)
-print len(abundant)
+    abundant = []
+    for i in range(1,28124):
+        if check_abundant(i):
+            abundant.append(i)
+    abundant = set(abundant)
 
+    mark = time.time()
+    count = 0
+    for num in range(1,28124):
 
-mark = time.time()
-count = 0
-for num in range(1,28124):
+        if sum_of_abundants(num, abundant):
+            pass
+        else:
+            count += num
 
-    if sum_of_abundants(num, abundant):
-        pass
-    else:
-        count += num
-
-print count
-print time.time()-mark
+    print 'total: ', count
+    print 'time elapsed: ', time.time()-mark
